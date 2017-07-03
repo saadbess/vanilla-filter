@@ -9,14 +9,12 @@
   <title>Vanilla Filter</title>
 
   <style>
-
     h1 {
       padding: 20px 0px;
       font-size: 36px;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-
   </style>
 
 </head>
@@ -31,7 +29,7 @@
       <input type="text" id="filterInput" class="input is-large" placeholder="Search...">
     </div>
 
-    <div id="names" class="box">
+    <div id="foods" class="box">
       <div class="content is-medium">
         <table>
           <thead>
@@ -40,19 +38,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr class="food-name">
               <td>Almond</td>
             </tr>
-            <tr>
+            <tr class="food-name">
               <td>Apple</td>
             </tr>
-            <tr>
+            <tr class="food-name">
               <td>Apricot</td>
             </tr>
-            <tr>
+            <tr class="food-name">
               <td>Avacado</td>
             </tr>
-            <tr>
+            <tr class="food-name">
               <td>Asparagus</td>
             </tr>
           </tbody>
@@ -62,19 +60,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr class="food-name">
               <td>Banana</td>
             </tr>
-            <tr>
+            <tr class="food-name">
               <td>Broccoli</td>
             </tr>
-            <tr>
+            <tr class="food-name">
               <td>Basil</td>
             </tr>
-            <tr>
+            <tr class="food-name">
               <td>Blueberries</td>
             </tr>
-            <tr>
+            <tr class="food-name">
               <td>Bok Choy</td>
             </tr>
           </tbody>
@@ -84,19 +82,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr class="food-name">
               <td>Cabbage</td>
             </tr>
-            <tr>
+            <tr class="food-name">
               <td>Carrots</td>
             </tr>
-            <tr>
+            <tr class="food-name">
               <td>Cashews</td>
             </tr>
-            <tr>
+            <tr class="food-name">
               <td>Celery</td>
             </tr>
-            <tr>
+            <tr class="food-name">
               <td>Cherries</td>
             </tr>
           </tbody>
@@ -105,6 +103,35 @@
     </div>
 
   </div>
+
+  <script>
+    // Get input element
+    let filterInput = document.getElementById('filterInput');
+
+    // Add element listener
+    filterInput.addEventListener('keyup', filterFoods);
+
+    function filterFoods() {
+      // Get value of input
+      let filterValue = document.getElementById('filterInput').value.toUpperCase();
+
+      // Get foods ID
+      let foods = document.getElementById('foods');
+      // Get food names
+      let foodName = foods.querySelectorAll('tr.food-name');
+
+      // Loop through food-name items
+      for (let i = 0; i < foodName.length; i++) {
+        let td = foodName[i].getElementsByTagName('td')[0];
+        // If matched
+        if (td.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+          foodName[i].style.display = '';
+        } else {
+          foodName[i].style.display = 'none';
+        }
+      }
+    }
+  </script>
 
 </body>
 
